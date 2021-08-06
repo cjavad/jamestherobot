@@ -1,6 +1,16 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+
+public struct TilePosition 
+{
+	public int x;
+	public int y;
+	
+	public TilePosition(Vector3 p) {
+		this.x = (int)Math.Round(p.x);
+		this.y = (int)Math.Round(p.z);
+	}
+}
 
 public class Tile : Spatial
 {
@@ -9,16 +19,11 @@ public class Tile : Spatial
 	public override void _Ready()
 	{
 		// take global position and insert into manager
-		int x = (int)Math.Round(this.GlobalTransform.origin.x);
-		int y = (int)Math.Round(this.GlobalTransform.origin.y);
+		TilePosition p = new TilePosition(this.GlobalTransform.origin);
 		
 		TileManager manager = GetNode<TileManager>("/root/TileManager");
 		
-		if (!manager.tiles.ContainsKey(x)) {
-			manager.tiles.Add(x, new Dictionary<int, Tile>());
-		}
-		
-		manager.tiles[x].Add(y, this);
+		manager.AddTile(p, this);
 	}
 	
 	// called by agent when occupying
