@@ -8,8 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Spatial",
+"class": "Agent",
+"language": "GDScript",
+"path": "res://scripts/Agent.gd"
+}, {
+"base": "Spatial",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://scripts/Tile.gd"
+} ]
 _global_script_class_icons={
+"Agent": "",
+"Tile": ""
 }
 
 [application]
@@ -19,7 +31,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-TileManager="*res://scripts/TileManager.cs"
+TileManager="*res://scripts/TileManager.gd"
 
 [rendering]
 
