@@ -19,6 +19,8 @@ public class TileManager : Node
 		
 		this.tiles[p.x].Add(p.y, tile);
 		
-		GD.Print("Tile added!");
+		Cam cam = GetNode<Cam>("/root/Spatial/Cam");
+		
+		cam.Transform.origin = new Vector3();
 	}
 }
