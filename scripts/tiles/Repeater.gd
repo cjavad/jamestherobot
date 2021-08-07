@@ -1,3 +1,3 @@
 extends Tile
 func update_agent(agent: Agent) -> void:
-	pass
+	agent.instruction -= 1;
