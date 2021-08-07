@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://prefabs/tiles/empty.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/empty.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefabs/agent.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prefabs/cam.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prefabs/tiles/wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://prefabs/tiles/turn.tscn" type="PackedScene" id=5]
 
 [node name="Level0" type="Spatial"]
 
@@ -190,9 +191,6 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0, 
 
 [node name="empty68" parent="Tiles" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0, -4 )
-
-[node name="empty69" parent="Tiles" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
 
 [node name="empty70" parent="Tiles" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1 )
@@ -611,3 +609,6 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 0, -
 
 [node name="wall36" parent="." instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 0, -4 )
+
+[node name="turn" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
