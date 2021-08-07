@@ -4,9 +4,9 @@ export var left: bool = true;
 
 func _process(delta):
 	if self.left:
-		$cog.rotate(Vector3.UP, delta * -30.0);
+		$cog.rotate($cog.transform.basis.y, delta);
 	else:
-		$cog.rotate(Vector3.UP, delta * 30.0);
+		$cog.rotate($cog.transform.basis.y, -delta);
 
 func update_agent(agent: Agent) -> void:
 	if self.left:
