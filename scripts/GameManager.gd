@@ -5,7 +5,7 @@ export var wait_time: float = 3.0;
 
 var selected_map: String = "res://maps/template.json";
 
-var running: bool = true;
+var running: bool = false;
 var instruction_time: float = 0.0;
 
 func _process(delta: float) -> void:
