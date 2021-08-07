@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://models/tiles/wall.glb" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Tile.gd" type="Script" id=2]
+
+[node name="wall" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+traversable = false

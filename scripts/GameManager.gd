@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 			tile.update_agent(agent);
 			
 			# update agent
-			agent.walk_forward();
+			agent.execute_instruction();
 		
 		# set instrction_time 
 		self.instruction_time = self.wait_time;
