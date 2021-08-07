@@ -171,6 +171,7 @@ config/icon="res://icon.png"
 [autoload]
 
 TileManager="*res://scripts/TileManager.gd"
+GameManager="*res://scripts/GameManager.gd"
 Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 GameManager="*res://scripts/GameManager.gd"
 
