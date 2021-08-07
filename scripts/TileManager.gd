@@ -10,3 +10,9 @@ func add_tile(tile: Tile):
 		self.tiles[x] = { y: tile };
 	else:
 		self.tiles[x][y] = tile;
+
+func has_tile(x: int, y: int) -> bool:
+	if not self.tiles.has(x):
+		return false;
+	
+	return self.tiles[x].has(y);
