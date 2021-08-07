@@ -17,7 +17,7 @@ onready var portal_tile = preload("res://prefabs/tiles/portal.tscn"); #7
 
 func _ready():
 	var file = File.new();
-	file.open("res://maps/level0.json", file.READ);
+	file.open(GameManager.selected_map, file.READ);
 	var map = JSON.parse(file.get_as_text()).result;
 	file.close();
 
@@ -68,5 +68,6 @@ func place_tile(tile: Tile, x: int, z: int):
 
 func place_agent(x: int, z: int, instructions: Array):
 	var agent: Agent = agent_model.instance();
+	agent.instructions = instructions;
 	agent.global_transform.origin = Vector3(x, 0, z);
 	add_child(agent);

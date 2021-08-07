@@ -2,6 +2,7 @@ extends Node
 
 export var agents: Array = [];
 export var wait_time: float = 3.0;
+export var selected_map: String = "res://maps/template.json";
 
 var running: bool = true;
 var instruction_time: float = 0.0;

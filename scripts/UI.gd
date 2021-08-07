@@ -18,7 +18,7 @@ func _ready():
 	
 	for map in maps:
 		var button = level_button.instance();
-		button.set_mapdata(map)	
+		GameManager.selected_map = "res://maps/" + map;
 		button.text = map;
 		$Levels/VBoxContainer.add_child(button);
 
@@ -87,7 +87,7 @@ func get_local_maps():
 		var file = dir.get_next()
 		if file == "":
 			break
-		elif not file.begins_with("."):
+		elif file.ends_with(".json"):
 			maps.append(file)
 	
 	return maps;
