@@ -1,6 +1,7 @@
 extends Spatial
 
 enum TileId {
+	VFORSEJR = 20,
 	EMPTY = 0,
 	WALL = 2,
 	TURN = 6,
@@ -21,13 +22,13 @@ func _ready():
 	var map = JSON.parse(file.get_as_text()).result;
 	file.close();
 
-	for x in map["tiles"].size():
-		for z in map["tiles"][x].size():
+	for x in range(map["tiles"].size()):
+		for z in range(map["tiles"][x].size()):
 			var id : int = map["tiles"][x][z][0];
 			# Offsetting x and z to center placement with tiles
 			var pos_x = x - map["width"] / 2;
 			var pos_z = z - map["height"] / 2;
-			match id:
+			match id as int:
 				TileId.EMPTY:
 					place_tile(empty_tile.instance(), pos_x, pos_z);
 				TileId.WALL:
@@ -38,6 +39,8 @@ func _ready():
 					place_tile(scrambler_tile.instance(), pos_x, pos_z);
 				TileId.PORTAL:
 					place_tile(portal_tile.instance(), pos_x, pos_z);
+				TileId.VFORSEJR:
+					pass
 				_:
 					printerr("Invalid TileId: {id} in map".format({id=id}))
 	

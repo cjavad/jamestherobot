@@ -18,7 +18,7 @@ func _ready():
 	
 	for map in maps:
 		var button = level_button.instance();
-		GameManager.selected_map = "res://maps/" + map;
+		button.set_map("res://maps/" + map);
 		button.text = map;
 		$Levels/VBoxContainer.add_child(button);
 
