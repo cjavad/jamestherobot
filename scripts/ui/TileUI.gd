@@ -16,6 +16,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if self.hovered and event.is_pressed():
 			TileManager.building_tile = self.index;
+			TileManager.dragging = true;
 
 
 func _on_mouse_entered() -> void:
