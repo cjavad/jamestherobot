@@ -42,5 +42,12 @@ margin_right = 320.0
 margin_bottom = 20.0
 text = "Level 0"
 
+[node name="LevelN" type="Button" parent="Levels/VBoxContainer"]
+margin_top = 24.0
+margin_right = 320.0
+margin_bottom = 44.0
+text = "Level N"
+
 [connection signal="pressed" from="Button" to="." method="_on_GetGoogleAuth_button_pressed"]
 [connection signal="pressed" from="Levels/VBoxContainer/Level0" to="." method="_on_Level0_pressed"]
+[connection signal="pressed" from="Levels/VBoxContainer/LevelN" to="." method="_on_LevelN_pressed"]
