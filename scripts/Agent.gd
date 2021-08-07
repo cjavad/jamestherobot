@@ -1,4 +1,3 @@
-tool
 extends Spatial
 class_name Agent
 
@@ -33,9 +32,6 @@ func _ready() -> void:
 	self.get_node("/root/GameManager").agents.append(self);
 
 func _process(delta: float) -> void:
-	if Engine.is_editor_hint():
-		return;
-	
 	if self.state == State.WALKING:
 		$AnimationPlayer.play("Walk");
 		
