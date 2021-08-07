@@ -39,7 +39,9 @@ func _on_GetGoogleAuth_button_pressed() -> void:
 
 func _on_Level0_pressed():
 	get_tree().change_scene("res://scenes/level0.tscn")
-	pass # Replace with function body.
+
+func _on_LevelN_pressed():
+	get_tree().change_scene("res://scenes/leveln.tscn")
 
 func get_firestore_user(email: String) -> FirestoreDocument:
 	var firestore_Users : FirestoreCollection = Firebase.Firestore.collection('users');
@@ -65,7 +67,6 @@ func get_firestore_user(email: String) -> FirestoreDocument:
 		user_document = yield(add_task, "add_document");
 
 	else:
-		print(result)
 		user_document = result[0];
 	
 	return user_document;

@@ -133,6 +133,16 @@ _global_script_classes=[ {
 "class": "Tile",
 "language": "GDScript",
 "path": "res://scripts/Tile.gd"
+}, {
+"base": "Container",
+"class": "TileUI",
+"language": "GDScript",
+"path": "res://scripts/ui/TileUI.gd"
+}, {
+"base": "Container",
+"class": "TilesUI",
+"language": "GDScript",
+"path": "res://scripts/ui/TilesUI.gd"
 } ]
 _global_script_class_icons={
 "Agent": "",
@@ -159,7 +169,9 @@ _global_script_class_icons={
 "SignalDocItem": "",
 "StorageReference": "",
 "StorageTask": "",
-"Tile": ""
+"Tile": "",
+"TileUI": "",
+"TilesUI": ""
 }
 
 [application]
@@ -173,6 +185,11 @@ config/icon="res://icon.png"
 TileManager="*res://scripts/TileManager.gd"
 GameManager="*res://scripts/GameManager.gd"
 Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep_height"
 
 [editor_plugins]
 

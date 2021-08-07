@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://default_env.tres" type="Environment" id=2]
+[ext_resource path="res://scripts/ui/TileUI.gd" type="Script" id=3]
+
+[sub_resource type="World" id=1]
+environment = ExtResource( 2 )
+
+[node name="TileUi" type="ViewportContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 107.0
+margin_bottom = 107.0
+rect_min_size = Vector2( 100, 100 )
+stretch = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 512, 512 )
+own_world = true
+world = SubResource( 1 )
+transparent_bg = true
+handle_input_locally = false
+fxaa = true
+render_target_update_mode = 3
+
+[node name="Camera" type="Camera" parent="Viewport"]
+transform = Transform( 0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 1, 1.5, 1 )
+projection = 1
+size = 1.5
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
