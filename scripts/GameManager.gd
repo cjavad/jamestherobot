@@ -3,7 +3,7 @@ extends Node
 export var agents: Array = [];
 export var wait_time: float = 3.0;
 
-var running: bool = true;
+var running: bool = false;
 var instruction_time: float = 0.0;
 
 func _process(delta: float) -> void:

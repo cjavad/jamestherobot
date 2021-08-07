@@ -12,6 +12,9 @@ func set_tile(tile: PackedScene, index: int) -> void:
 	self.index = index;
 	$Viewport.add_child(self.tile);
 
+func set_count(count: int) -> void:
+	$Label.text = count as String;
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if self.hovered and event.is_pressed():
