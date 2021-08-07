@@ -8,6 +8,47 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	upload_map("test-2", {
+		"version": "1.0.0",
+		"height": 9,
+		"width": 9,
+		"agents": [
+			{   
+				"pos": [0, 0],
+				"ins": [
+					0,
+					1,
+					3,
+					4
+				]
+			},
+			{   
+				"pos": [8, 8],
+				"ins": [
+					0,
+					1,
+					3,
+					4
+				]
+			}
+		],
+		"tiles":[
+			[[0], [9], [0], [0], [0], [0], [0], [0], [0]],
+			[[0], [0], [0], [0], [0], [0], [0], [0], [0]],
+			[[0], [0], [0], [0], [0], [2], [0], [0], [0]],
+			[[0], [0], [0], [0], [0], [2], [0], [0], [0]],
+			[[0], [0], [0], [0], [0], [2], [0], [0], [0]],
+			[[0], [0], [0], [0], [0], [2], [0], [0], [0]],
+			[[0], [0], [0], [0], [0], [2], [0], [0], [0]],
+			[[0], [0], [0], [0], [0], [2], [0], [0], [0]],
+			[[0], [0], [0], [0], [0], [2], [0], [0], [0]]
+		],
+		"building_tiles": [
+			[7, 2],
+			[6, 2],
+			[2, 2]
+		]    
+	}, "javadshafique@gmail.com")
 	pass # Replace with function body.
 
 func upload_map(name: String, mapdata: Dictionary, email: String):

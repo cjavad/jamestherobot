@@ -13,6 +13,14 @@ func _ready():
 	Firebase.Auth.connect("login_failed", self, "_on_login_failed")
 	Firebase.Auth.connect("auth_request", self, "_on_auth_request")
 	Firebase.Auth.connect("userdata_received", self, "_on_userdata_received")
+	
+	var maps = get_local_maps();
+	
+	for map in maps:
+		var button = level_button.instance();
+		button.set_mapdata(map)	
+		button.text = map;
+		$Levels/VBoxContainer.add_child(button);
 
 func _on_login_failed():
 	$Button.set_text("Failed to login");
@@ -69,6 +77,20 @@ func get_firestore_user(email: String) -> FirestoreDocument:
 		user_document = result[0];
 	
 	return user_document;
+	
+func get_local_maps():
+	var maps = [];
+	var dir = Directory.new();
+	dir.open("res://maps");
+	dir.list_dir_begin(true, true);
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif not file.begins_with("."):
+			maps.append(file)
+	
+	return maps;
 
 func get_firestore_maps():
 	var task = Firebase.Firestore.list("maps");
@@ -89,3 +111,8 @@ func get_firestore_maps():
 		var button = level_button.instance();
 		button.set_mapdata(map.data)	
 		print(map)
+
+
+func _on_Button2_pressed():
+	get_tree().change_scene("res://scenes/map_editor.tscn")
+	pass # Replace with function body.
