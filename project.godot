@@ -176,6 +176,7 @@ Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/godot-firebase/plugin.cfg", "res://addons/http-sse-client/plugin.cfg", "res://addons/silicon.util.custom_docs/plugin.cfg" )
+GameManager="*res://scripts/GameManager.gd"
 
 [firebase]
 
