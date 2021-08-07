@@ -1,5 +1,6 @@
 extends Node
 
+var level_button = preload("res://scenes/button.tscn");
 var userdata: Dictionary = {};
 
 func _ready():
@@ -22,8 +23,8 @@ func _on_auth_request(result_code: int, result_content: String):
 func _on_login_succeeded(user : Dictionary):
 	Firebase.Auth.save_auth(Firebase.Auth.auth);
 	userdata = user;
-	print(get_firestore_user(userdata.email));
 	$Button.set_text("Logged in as {email}".format({email=userdata.email}));
+	get_firestore_maps();
 
 func _on_userdata_received(user: Dictionary):
 	userdata = user;
@@ -60,8 +61,6 @@ func get_firestore_user(email: String) -> FirestoreDocument:
 	# Yield on the request to get a result
 	var result : Array = yield(query_task, "task_finished")
 	
-	print(result)
-	
 	if not result.size() > 0:
 		var add_task : FirestoreTask = firestore_Users.add(email.md5_text(), {'email': email, 'date': OS.get_unix_time()});
 		user_document = yield(add_task, "add_document");
@@ -70,3 +69,23 @@ func get_firestore_user(email: String) -> FirestoreDocument:
 		user_document = result[0];
 	
 	return user_document;
+
+func get_firestore_maps():
+	var task = Firebase.Firestore.list("maps");
+	var levels = yield(task, "listed_documents");
+	print(levels)
+	
+	for map_id in levels:
+		var collection : FirestoreCollection = Firebase.Firestore.collection("maps");
+		collection.get(map_id)
+		var map : FirestoreDocument = yield(collection, "get_document")
+		print(map)
+		var data = map.doc_fields.data;
+
+		if not map.doc_fields.hash == data.md5_text():
+			print(data, data.md5_hash());
+			continue
+			
+		var button = level_button.instance();
+		button.set_mapdata(map.data)	
+		print(map)

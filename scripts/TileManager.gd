@@ -56,3 +56,4 @@ func init_tiles_ui() -> void:
 		
 		var instance: TileUI = self.tile_ui.instance();
 		instance.set_tile(tile.scene, i);
+		self.tiles_ui.get_node("HBoxContainer").add_child(instance);

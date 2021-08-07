@@ -10,7 +10,7 @@ func set_tile(tile: PackedScene, index: int) -> void:
 	
 	self.tile = instance;
 	self.index = index;
-	$ViewportContainer/Viewport.add_child(self.tile);
+	$Viewport.add_child(self.tile);
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
