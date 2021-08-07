@@ -1,5 +1,5 @@
 extends Node
-class_name Auth
+class_name UI
 
 var userdata: Dictionary = {};
 
@@ -36,3 +36,8 @@ func _on_GetGoogleAuth_button_pressed() -> void:
 
 	$Button.set_text("Waiting for an authorization code...");
 	Firebase.Auth.get_google_auth_localhost();
+
+
+func _on_Level0_pressed():
+	get_tree().change_scene("res://scenes/level0.tscn")
+	pass # Replace with function body.

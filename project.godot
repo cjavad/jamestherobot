@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/silicon.util.custom_docs/doc_item/argument_doc_item.gd"
 }, {
-"base": "Node",
-"class": "Auth",
-"language": "GDScript",
-"path": "res://scripts/login.gd"
-}, {
 "base": "DocItem",
 "class": "ClassDocItem",
 "language": "GDScript",
@@ -138,11 +133,15 @@ _global_script_classes=[ {
 "class": "Tile",
 "language": "GDScript",
 "path": "res://scripts/Tile.gd"
+}, {
+"base": "Node",
+"class": "UI",
+"language": "GDScript",
+"path": "res://scripts/ui.gd"
 } ]
 _global_script_class_icons={
 "Agent": "",
 "ArgumentDocItem": "",
-"Auth": "",
 "ClassDocItem": "",
 "ConstantDocItem": "",
 "DocExporter": "",
@@ -165,13 +164,14 @@ _global_script_class_icons={
 "SignalDocItem": "",
 "StorageReference": "",
 "StorageTask": "",
-"Tile": ""
+"Tile": "",
+"UI": ""
 }
 
 [application]
 
 config/name="jamestherobot"
-run/main_scene="res://scenes/login_ui.tscn"
+run/main_scene="res://scenes/ui.tscn"
 config/icon="res://icon.png"
 
 [autoload]
