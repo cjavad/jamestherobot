@@ -133,11 +133,6 @@ _global_script_classes=[ {
 "class": "Tile",
 "language": "GDScript",
 "path": "res://scripts/Tile.gd"
-}, {
-"base": "Node",
-"class": "UI",
-"language": "GDScript",
-"path": "res://scripts/ui.gd"
 } ]
 _global_script_class_icons={
 "Agent": "",
@@ -164,8 +159,7 @@ _global_script_class_icons={
 "SignalDocItem": "",
 "StorageReference": "",
 "StorageTask": "",
-"Tile": "",
-"UI": ""
+"Tile": ""
 }
 
 [application]
