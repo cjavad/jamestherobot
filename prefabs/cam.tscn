@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://scripts/Cam.cs" type="Script" id=1]
+[gd_scene format=2]
 
 [node name="Cam" type="Camera"]
-script = ExtResource( 1 )
+transform = Transform( -1, 7.57103e-08, -4.37114e-08, 0, 0.5, 0.866025, 8.74228e-08, 0.866025, -0.5, 0, 0, 0 )
