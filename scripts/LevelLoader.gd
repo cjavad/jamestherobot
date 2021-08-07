@@ -26,8 +26,9 @@ func _ready():
 		for z in range(map["tiles"][x].size()):
 			var id : int = map["tiles"][x][z][0];
 			# Offsetting x and z to center placement with tiles
-			var pos_x = x - map["width"] / 2;
-			var pos_z = z - map["height"] / 2;
+			var pos_x = ceil(x - map["width"] as float / 2.0);
+			var pos_z = ceil(z - map["height"] as float / 2.0);
+			print("x: {x} z: {z} posX: {posx}, posZ: {posy}".format({x=x, z=z, posx=pos_x, posy=pos_z}))
 			match id as int:
 				TileId.EMPTY:
 					place_tile(empty_tile.instance(), pos_x, pos_z);
