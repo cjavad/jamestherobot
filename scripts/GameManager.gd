@@ -32,7 +32,18 @@ func _process(delta: float) -> void:
 			var tile: Tile = TileManager.tiles[agent.tile_x][agent.tile_y];
 			
 			# update tile
-			tile.update_agent(agent);
+			tile.update_agent_end(agent);
+			
+			# find their tile, if it doesn't exist, then lose the game
+			if !TileManager.has_tile(agent.tile_x, agent.tile_y):
+				print("You lost, agent went out of level");
+				continue;
+			
+			var new_tile: Tile = TileManager.tiles[agent.tile_x][agent.tile_y];
+			
+			# update tile
+			new_tile.update_agent_start(agent);
+			
 			
 			# update agent
 			agent.execute_instruction();

@@ -16,6 +16,7 @@ onready var tile_y: int = round(self.global_transform.origin.z) as int;
 
 onready var start_x: int = self.tile_x;
 onready var start_y: int = self.tile_y;
+onready var start_direction: int = self.direction;
 
 var instruction: int = 0;
 

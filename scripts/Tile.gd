@@ -20,5 +20,8 @@ func _ready():
 	# add self to tile manager
 	TileManager.add_tile(self);
 
-func update_agent(agent: Agent) -> void:
+func update_agent_end(agent: Agent) -> void:
+	pass
+
+func update_agent_start(agent: Agent) -> void:
 	pass

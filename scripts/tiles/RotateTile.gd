@@ -8,7 +8,7 @@ func _process(delta):
 	else:
 		$cog.rotate($cog.transform.basis.y, -delta);
 
-func update_agent(agent: Agent) -> void:
+func update_agent_start(agent: Agent) -> void:
 	if self.left:
 		agent.turn_left()
 	else:

@@ -9,6 +9,7 @@ func _pressed():
 			agent.instruction = 0;
 			agent.tile_x = agent.start_x;
 			agent.tile_y = agent.start_y;
+			agent.direction = agent.start_direction;
 			
 			agent.global_transform.origin.x = agent.tile_x as float;
 			agent.global_transform.origin.z = agent.tile_y as float;

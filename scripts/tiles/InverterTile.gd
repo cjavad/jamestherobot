@@ -1,3 +1,4 @@
 extends Tile
-func update_agent(agent: Agent) -> void:
+
+func update_agent_start(agent: Agent) -> void:
 	agent.instructions.invert();

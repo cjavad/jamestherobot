@@ -3,6 +3,7 @@ extends Spatial
 enum TileId {
 	VFORSEJR = 20,
 	EMPTY = 0,
+	NONE = 19,
 	WALL = 2,
 	TURN = 6,
 	SCRAMBLER = 9,
@@ -29,7 +30,7 @@ func _ready():
 			# Offsetting x and z to center placement with tiles
 			var pos_x = ceil(x - map["width"] as float / 2.0);
 			var pos_z = ceil(z - map["height"] as float / 2.0);
-			if id == TileId.VFORSEJR: continue
+			if id == TileId.VFORSEJR or id == TileId.NONE: continue
 			var tile: Tile = get_tile(id).instance();
 			if map["tiles"][x][z].size() > 1:
 				tile.build(map["tiles"][x][z][1]);
@@ -58,7 +59,6 @@ func get_tile(tile_id: int):
 		TileId.TURN: return turn_tile;
 		TileId.SCRAMBLER: return scrambler_tile;
 		TileId.PORTAL: return portal_tile;
-		TileId.VFORSEJR: return null;
 		_: printerr("Invalid TileId: {id} in building tiles".format({id=tile_id}));
 
 func place_tile(tile: Tile, x: int, z: int):
