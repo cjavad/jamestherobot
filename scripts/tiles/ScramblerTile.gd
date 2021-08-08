@@ -1,4 +1,4 @@
 extends Tile
 
 func update_agent_start(agent: Agent) -> void:
-	agent.instruction +=1
+	agent.instruction +=1;
