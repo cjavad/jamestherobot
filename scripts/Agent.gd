@@ -14,6 +14,7 @@ export(Array, Direction) var instructions: Array;
 onready var tile_x: int = round(self.global_transform.origin.x) as int;
 onready var tile_y: int = round(self.global_transform.origin.z) as int;
 
+onready var rt_label = preload("res://prefabs/ui/richtextlabel.tscn");
 onready var start_x: int = self.tile_x;
 onready var start_y: int = self.tile_y;
 onready var start_direction: int = self.direction;
@@ -32,21 +33,26 @@ func _ready() -> void:
 	# play wake animation
 	$AnimationPlayer.play("Wake");
 	
-	# register in GameManager
-	self.get_node("/root/GameManager").agents.append(self);
-
-func _process(delta: float) -> void:
-	var text: String = "";
-	
+		
 	for instruction in self.instructions:
+		var text: String = "";
+
 		match instruction as int:
 			Direction.NORTH: text = text + "NORTH\n";
 			Direction.EAST: text = text + "EAST\n";
 			Direction.SOUTH: text = text + "SOUTH\n";
 			Direction.WEST: text = text + "WEST\n";
+		
+		var rt_instance = rt_label.instance();
+		rt_instance.text = text;
+		rt_instance.push_color(Color("black"));
+		rt_instance.pop();
+		GameManager.instructions_ui.add_child(rt_instance);
 	
-	GameManager.instructions_ui.text = text;
-	
+	# register in GameManager
+	self.get_node("/root/GameManager").agents.append(self);
+
+func _process(delta: float) -> void:
 	if self.state == State.WALKING:
 		$AnimationPlayer.play("Walk");
 		
@@ -67,6 +73,11 @@ func walk_to(x: int, y: int) -> void:
 	if TileManager.has_tile(x, y) and not TileManager.tiles[x][y].traversable:
 		print("could not traverse tile");
 		return;
+	
+	for win_c in GameManager.win_condition:
+		if win_c[0] == x and win_c[1] == y:
+			GameManager.win();
+			return;
 	
 	self.target = Vector3(x as float, 0.0, y as float);
 	self.look_at(self.target, Vector3.UP);
@@ -91,7 +102,7 @@ func execute_instruction() -> void:
 		return;
 	
 	self.walk_direction(self.instructions[self.instruction]);
-	
+	GameManager.instructions_ui.color_x(self.instruction);
 	self.instruction += 1;
 
 func turn_left() -> void:

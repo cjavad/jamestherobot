@@ -22,6 +22,8 @@ func _ready():
 	file.open(GameManager.selected_map, file.READ);
 	var map = JSON.parse(file.get_as_text()).result;
 	file.close();
+	
+	GameManager.win_condition = [];
 
 	for x in range(map["tiles"].size()):
 		for z in range(map["tiles"][x].size()):
@@ -30,7 +32,10 @@ func _ready():
 			# Offsetting x and z to center placement with tiles
 			var pos_x = ceil(x - map["width"] as float / 2.0);
 			var pos_z = ceil(z - map["height"] as float / 2.0);
-			if id == TileId.VFORSEJR or id == TileId.NONE: continue
+			if id == TileId.VFORSEJR:
+				GameManager.win_condition.append([x, z]);
+				continue
+			if id == TileId.NONE: continue
 			var tile: Tile = get_tile(id).instance();
 			if map["tiles"][x][z].size() > 1:
 				tile.build(map["tiles"][x][z][1]);

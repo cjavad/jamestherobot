@@ -16,6 +16,7 @@ func _pressed():
 			
 			agent.state = Agent.State.IDLE;
 			agent.get_node("AnimationPlayer").play("Wake");
+			GameManager.instructions_ui.uncolor_all();
 		
 		self.text = "Play";
 	elif GameManager.state == GameManager.State.BUILD: # play

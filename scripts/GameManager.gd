@@ -4,6 +4,8 @@ export var agents: Array = [];
 export var wait_time: float = 3.0;
 
 var selected_map: String = "res://maps/template.json";
+var instructions_ui: InstructionsUI;
+var win_condition: Array;
 
 enum State {
 	BUILD,
@@ -14,7 +16,7 @@ enum State {
 
 var state: int = State.BUILD;
 var instruction_time: float = 0.0;
-var instructions_ui: InstructionsUi;
+# var instructions_ui: InstructionsUi;
 
 func _process(delta: float) -> void:
 	# if evaluation isn't running, do nothing
