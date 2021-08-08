@@ -11,6 +11,7 @@ enum TileId {
 };
 
 onready var agent_model = preload("res://prefabs/agent.tscn");
+onready var win_tile = preload("res://prefabs/tiles/win.tscn"); # 20
 onready var empty_tile = preload("res://prefabs/tiles/empty.tscn"); # 0
 onready var scrambler_tile = preload("res://prefabs/tiles/scrambler.tscn"); #9
 onready var turn_tile = preload("res://prefabs/tiles/turn.tscn"); #6
@@ -22,8 +23,6 @@ func _ready():
 	file.open(GameManager.selected_map, file.READ);
 	var map = JSON.parse(file.get_as_text()).result;
 	file.close();
-	
-	GameManager.win_condition = [];
 
 	for x in range(map["tiles"].size()):
 		for z in range(map["tiles"][x].size()):
@@ -32,9 +31,6 @@ func _ready():
 			# Offsetting x and z to center placement with tiles
 			var pos_x = ceil(x - map["width"] as float / 2.0);
 			var pos_z = ceil(z - map["height"] as float / 2.0);
-			if id == TileId.VFORSEJR:
-				GameManager.win_condition.append([pos_x, pos_z]);
-				continue
 			if id == TileId.NONE: continue
 			var tile: Tile = get_tile(id).instance();
 			if map["tiles"][x][z].size() > 1:
@@ -64,6 +60,7 @@ func get_tile(tile_id: int):
 		TileId.TURN: return turn_tile;
 		TileId.SCRAMBLER: return scrambler_tile;
 		TileId.PORTAL: return portal_tile;
+		TileId.VFORSEJR: return win_tile;
 		_: printerr("Invalid TileId: {id} in building tiles".format({id=tile_id}));
 
 func place_tile(tile: Tile, x: int, z: int):

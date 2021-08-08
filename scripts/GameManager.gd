@@ -5,7 +5,6 @@ export var wait_time: float = 3.0;
 
 var selected_map: String = "res://maps/template.json";
 var instructions_ui: InstructionsUI;
-var win_condition: Array;
 
 enum State {
 	BUILD,

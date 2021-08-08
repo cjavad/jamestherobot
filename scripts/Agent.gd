@@ -23,8 +23,7 @@ var instruction: int = 0;
 
 enum State {
 	IDLE,
-	WALKING,
-	WINNING
+	WALKING
 };
 
 var state: int = State.IDLE;
@@ -70,23 +69,12 @@ func _process(delta: float) -> void:
 			self.global_transform.origin += dir * delta * 0.5;
 
 func walk_to(x: int, y: int) -> void:
-	if self.state == self.State.WINNING:
-		
-		return;
-	
-	for win_c in GameManager.win_condition:
-		if win_c[0] == x and win_c[1] == y:
-			self.state = self.State.WINNING;
-
-	if TileManager.has_tile(x, y) and not self.state == State.WINNING and not TileManager.tiles[x][y].traversable:
+	if TileManager.has_tile(x, y) and not TileManager.tiles[x][y].traversable:
 		print("could not traverse tile");
 		return;
 		
 	self.target = Vector3(x as float, 0.0, y as float);
 	self.look_at(self.target, Vector3.UP);
-	if self.state == State.WINNING:
-		GameManager.win_condition = [];
-		GameManager.win();
 	self.state = State.WALKING;
 	
 
