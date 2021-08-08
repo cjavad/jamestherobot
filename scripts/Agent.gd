@@ -14,6 +14,9 @@ export(Array, Direction) var instructions: Array;
 onready var tile_x: int = round(self.global_transform.origin.x) as int;
 onready var tile_y: int = round(self.global_transform.origin.z) as int;
 
+onready var start_x: int = self.tile_x;
+onready var start_y: int = self.tile_y;
+
 var instruction: int = 0;
 
 enum State {
