@@ -14,6 +14,7 @@ export(Array, Direction) var instructions: Array;
 onready var tile_x: int = round(self.global_transform.origin.x) as int;
 onready var tile_y: int = round(self.global_transform.origin.z) as int;
 
+onready var rt_label = preload("res://prefabs/ui/label.tscn");
 onready var start_x: int = self.tile_x;
 onready var start_y: int = self.tile_y;
 onready var start_direction: int = self.direction;
@@ -23,6 +24,7 @@ var instruction: int = 0;
 enum State {
 	IDLE,
 	WALKING,
+	WINNING
 };
 
 var state: int = State.IDLE;
@@ -32,21 +34,25 @@ func _ready() -> void:
 	# play wake animation
 	$AnimationPlayer.play("Wake");
 	
-	# register in GameManager
-	self.get_node("/root/GameManager").agents.append(self);
-
-func _process(delta: float) -> void:
-	var text: String = "";
-	
+		
 	for instruction in self.instructions:
+		var text: String = "";
+
 		match instruction as int:
 			Direction.NORTH: text = text + "NORTH\n";
 			Direction.EAST: text = text + "EAST\n";
 			Direction.SOUTH: text = text + "SOUTH\n";
 			Direction.WEST: text = text + "WEST\n";
+		
+		var rt_instance = rt_label.instance();
+		rt_instance.text = text;
+		rt_instance.set("custom_colors/font_color", Color("#000000"));
+		GameManager.instructions_ui.add_child(rt_instance);
 	
-	GameManager.instructions_ui.text = text;
-	
+	# register in GameManager
+	self.get_node("/root/GameManager").agents.append(self);
+
+func _process(delta: float) -> void:
 	if self.state == State.WALKING:
 		$AnimationPlayer.play("Walk");
 		
@@ -64,13 +70,25 @@ func _process(delta: float) -> void:
 			self.global_transform.origin += dir * delta * 0.5;
 
 func walk_to(x: int, y: int) -> void:
-	if TileManager.has_tile(x, y) and not TileManager.tiles[x][y].traversable:
-		print("could not traverse tile");
+	if self.state == self.State.WINNING:
+		
 		return;
 	
+	for win_c in GameManager.win_condition:
+		if win_c[0] == x and win_c[1] == y:
+			self.state = self.State.WINNING;
+
+	if TileManager.has_tile(x, y) and not self.state == State.WINNING and not TileManager.tiles[x][y].traversable:
+		print("could not traverse tile");
+		return;
+		
 	self.target = Vector3(x as float, 0.0, y as float);
 	self.look_at(self.target, Vector3.UP);
+	if self.state == State.WINNING:
+		GameManager.win_condition = [];
+		GameManager.win();
 	self.state = State.WALKING;
+	
 
 # walk depending on direction
 func walk_direction(direction: int) -> void:
@@ -91,7 +109,9 @@ func execute_instruction() -> void:
 		return;
 	
 	self.walk_direction(self.instructions[self.instruction]);
-	
+	if self.instruction > 0:
+		GameManager.instructions_ui.uncolor_x(self.instruction - 1);
+	GameManager.instructions_ui.color_x(self.instruction);
 	self.instruction += 1;
 
 func turn_left() -> void:

@@ -104,10 +104,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-firebase/firestore/firestore_task.gd"
 }, {
-"base": "RichTextLabel",
-"class": "InstructionsUi",
+"base": "VBoxContainer",
+"class": "InstructionsUI",
 "language": "GDScript",
-"path": "res://scripts/ui/InstructionsUI.gd"
+"path": "res://scripts/ui/Instructions.gd"
 }, {
 "base": "DocItem",
 "class": "MethodDocItem",
@@ -169,7 +169,7 @@ _global_script_class_icons={
 "FirestoreDocument": "",
 "FirestoreQuery": "",
 "FirestoreTask": "",
-"InstructionsUi": "",
+"InstructionsUI": "",
 "MethodDocItem": "",
 "PropertyDocItem": "",
 "SignalDocItem": "",
