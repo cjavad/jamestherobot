@@ -33,7 +33,7 @@ func _ready():
 			var pos_x = ceil(x - map["width"] as float / 2.0);
 			var pos_z = ceil(z - map["height"] as float / 2.0);
 			if id == TileId.VFORSEJR:
-				GameManager.win_condition.append([x, z]);
+				GameManager.win_condition.append([pos_x, pos_z]);
 				continue
 			if id == TileId.NONE: continue
 			var tile: Tile = get_tile(id).instance();

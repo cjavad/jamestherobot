@@ -109,11 +109,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/ui/Instructions.gd"
 }, {
-"base": "RichTextLabel",
-"class": "Instructions_Ui",
-"language": "GDScript",
-"path": "res://scripts/ui/InstructionsUI.gd"
-}, {
 "base": "DocItem",
 "class": "MethodDocItem",
 "language": "GDScript",
@@ -175,7 +170,6 @@ _global_script_class_icons={
 "FirestoreQuery": "",
 "FirestoreTask": "",
 "InstructionsUI": "",
-"Instructions_Ui": "",
 "MethodDocItem": "",
 "PropertyDocItem": "",
 "SignalDocItem": "",
