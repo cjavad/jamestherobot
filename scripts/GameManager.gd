@@ -5,12 +5,19 @@ export var wait_time: float = 3.0;
 
 var selected_map: String = "res://maps/template.json";
 
-var running: bool = false;
+enum State {
+	BUILD,
+	RUNNING,
+	WIN,
+	LOSE,
+}
+
+var state: int = State.BUILD;
 var instruction_time: float = 0.0;
 
 func _process(delta: float) -> void:
 	# if evaluation isn't running, do nothing
-	if not self.running:
+	if self.state != State.RUNNING:
 		return;
 	
 	# decrease instruction_time, and only continue if we're at zero
@@ -50,6 +57,12 @@ func _process(delta: float) -> void:
 		
 		# set instrction_time 
 		self.instruction_time = self.wait_time;
+
+func win() -> void:
+	self.state = State.WIN;
+
+func lose() -> void:
+	self.state = State.LOSE;
 
 func agents_idle() -> bool:
 	for agent in self.agents:

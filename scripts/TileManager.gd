@@ -48,7 +48,7 @@ func _input(event: InputEvent):
 			self.remove_tile(self.hovered_tile);
 
 func remove_tile(tile: Tile):
-	if GameManager.running:
+	if GameManager.state != GameManager.State.BUILD:
 		return;
 	
 	if tile != null and tile.replacing != null:
@@ -68,7 +68,7 @@ func remove_tile(tile: Tile):
 
 func build_tile(tile: Tile):
 	# if evaluation is running do nothing
-	if GameManager.running:
+	if GameManager.state != GameManager.State.BUILD:
 		return;
 	
 	if self.dragging:
