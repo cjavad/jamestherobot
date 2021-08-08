@@ -1,8 +1,8 @@
 extends Button
 
 func _pressed():
-	if GameManager.running: # stop
-		GameManager.running = false;
+	if GameManager.state == GameManager.State.RUNNING: # stop
+		GameManager.state = GameManager.State.BUILD
 		GameManager.instruction_time = 0.0;
 		
 		for agent in GameManager.agents:
@@ -18,7 +18,7 @@ func _pressed():
 			agent.get_node("AnimationPlayer").play("Wake");
 		
 		self.text = "Play";
-	else: # play
+	elif GameManager.state == GameManager.State.BUILD: # play
 		
-		GameManager.running = true;
+		GameManager.state = GameManager.State.RUNNING
 		self.text = "Stop";

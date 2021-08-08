@@ -36,6 +36,17 @@ func _ready() -> void:
 	self.get_node("/root/GameManager").agents.append(self);
 
 func _process(delta: float) -> void:
+	var text: String = "";
+	
+	for instruction in self.instructions:
+		match instruction as int:
+			Direction.NORTH: text = text + "NORTH\n";
+			Direction.EAST: text = text + "EAST\n";
+			Direction.SOUTH: text = text + "SOUTH\n";
+			Direction.WEST: text = text + "WEST\n";
+	
+	GameManager.instructions_ui.text = text;
+	
 	if self.state == State.WALKING:
 		$AnimationPlayer.play("Walk");
 		

@@ -14,6 +14,7 @@ enum State {
 
 var state: int = State.BUILD;
 var instruction_time: float = 0.0;
+var instructions_ui: InstructionsUi;
 
 func _process(delta: float) -> void:
 	# if evaluation isn't running, do nothing
@@ -33,7 +34,7 @@ func _process(delta: float) -> void:
 		for agent in self.agents:
 			# find their tile, if it doesn't exist, then lose the game
 			if !TileManager.has_tile(agent.tile_x, agent.tile_y):
-				print("You lost, agent went out of level");
+				GameManager.lose();
 				continue;
 			
 			var tile: Tile = TileManager.tiles[agent.tile_x][agent.tile_y];
@@ -43,7 +44,7 @@ func _process(delta: float) -> void:
 			
 			# find their tile, if it doesn't exist, then lose the game
 			if !TileManager.has_tile(agent.tile_x, agent.tile_y):
-				print("You lost, agent went out of level");
+				GameManager.lose();
 				continue;
 			
 			var new_tile: Tile = TileManager.tiles[agent.tile_x][agent.tile_y];
