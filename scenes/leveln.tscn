@@ -13,3 +13,8 @@ script = ExtResource( 1 )
 transform = Transform( -1, 7.57104e-08, -4.37114e-08, 0, 0.5, 0.866025, 8.74228e-08, 0.866025, -0.5, 0, 6, -5 )
 
 [node name="MainUI" parent="." instance=ExtResource( 3 )]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.482963, 0.595035, -0.642402, 0.12941, 0.677077, 0.724444, 0.866025, -0.433013, 0.25, 0, 0, 0 )
+light_color = Color( 1, 0.976471, 0.929412, 1 )
+shadow_enabled = true
