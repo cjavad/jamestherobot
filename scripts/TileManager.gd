@@ -51,7 +51,7 @@ func remove_tile(tile: Tile):
 	if GameManager.running:
 		return;
 	
-	if tile.replacing != null:
+	if tile != null and tile.replacing != null:
 		var idx: int = tile.replacing.idx;
 		var buildable_tile: BuildableTile = self.buildable_tiles[idx];
 		var old: Tile = tile.replacing.tile;
@@ -90,7 +90,7 @@ func build_tile(tile: Tile):
 				self.tiles_ui.tiles[idx].set_count(replaced_tile.count);
 			
 			var instance: Tile = building_tile.scene.instance();
-			if building_tile.meta:
+			if building_tile != null:
 				instance.build(building_tile.meta);
 			instance.global_transform.origin = p;
 			instance.x = tile.x;

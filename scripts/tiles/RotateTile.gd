@@ -1,6 +1,6 @@
 extends Tile
 
-export var left: bool = true;
+var left: bool = true;
 
 func _process(delta):
 	if self.left:
@@ -13,3 +13,6 @@ func update_agent_start(agent: Agent) -> void:
 		agent.turn_left()
 	else:
 		agent.turn_right()
+
+func build(direction: int):
+	self.left = direction
