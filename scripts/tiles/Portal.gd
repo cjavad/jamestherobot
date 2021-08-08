@@ -2,6 +2,7 @@ extends Tile
 
 export var travel_length: int;
 
+<<<<<<< Updated upstream
 func update_agent_end(agent: Agent) -> void:
 	var target_x: int;
 	var target_y: int;
@@ -35,3 +36,11 @@ func update_agent_end(agent: Agent) -> void:
 
 func build(length: int):
 	travel_length = length;
+=======
+func update_agent(agent: Agent) -> void:
+	agent.tile_x = self.target_x + self.x;
+	agent.tile_y = self.target_y + self.y;
+	
+	agent.global_transform.origin.x = self.target_x as float + self.x as float;
+	agent.global_transform.origin.z = self.target_y as float + self.y as float;
+>>>>>>> Stashed changes

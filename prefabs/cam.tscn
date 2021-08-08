@@ -2,3 +2,4 @@
 
 [node name="Cam" type="Camera"]
 transform = Transform( -1, 7.57103e-08, -4.37114e-08, 0, 0.5, 0.866025, 8.74228e-08, 0.866025, -0.5, 0, 0, 0 )
+current = true
