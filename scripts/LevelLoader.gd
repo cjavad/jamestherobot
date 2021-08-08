@@ -25,24 +25,15 @@ func _ready():
 	for x in range(map["tiles"].size()):
 		for z in range(map["tiles"][x].size()):
 			var id : int = map["tiles"][x][z][0];
+			
 			# Offsetting x and z to center placement with tiles
 			var pos_x = ceil(x - map["width"] as float / 2.0);
 			var pos_z = ceil(z - map["height"] as float / 2.0);
-			match id as int:
-				TileId.EMPTY:
-					place_tile(empty_tile.instance(), pos_x, pos_z);
-				TileId.WALL:
-					place_tile(wall_tile.instance(), pos_x, pos_z);
-				TileId.TURN:
-					place_tile(turn_tile.instance(), pos_x, pos_z);
-				TileId.SCRAMBLER:
-					place_tile(scrambler_tile.instance(), pos_x, pos_z);
-				TileId.PORTAL:
-					place_tile(portal_tile.instance(), pos_x, pos_z);
-				TileId.VFORSEJR:
-					pass
-				_:
-					printerr("Invalid TileId: {id} in map".format({id=id}))
+			if id == TileId.VFORSEJR: continue
+			var tile: Tile = get_tile(id).instance();
+			if map["tiles"][x][z].size() > 1:
+				tile.build(map["tiles"][x][z][1]);
+			place_tile(tile, pos_x, pos_z);
 	
 	for agent in map["agents"]:
 		var x = agent["pos"][0] - map["width"] / 2;
@@ -54,15 +45,21 @@ func _ready():
 	for building_tile in map["building_tiles"]:
 		var tile: TileManager.BuildableTile = TileManager.BuildableTile.new();
 		tile.count = building_tile[1];
-		match building_tile[0] as int:
-			TileId.EMPTY: tile.scene = empty_tile;
-			TileId.WALL: tile.scene = wall_tile;
-			TileId.TURN: tile.scene = turn_tile;
-			TileId.SCRAMBLER: tile.scene = scrambler_tile;
-			TileId.PORTAL: tile.scene = portal_tile;
-			_: printerr("Invalid TileId: {id} in building tiles".format({id=building_tile[0]}));
+		if building_tile.size() > 2:
+			tile.meta = building_tile[2];
+		tile.scene = get_tile(building_tile[0]);
 		TileManager.buildable_tiles.append(tile);
 	TileManager.init_tiles_ui();
+
+func get_tile(tile_id: int):
+	match tile_id as int:
+		TileId.EMPTY: return empty_tile;
+		TileId.WALL: return wall_tile;
+		TileId.TURN: return turn_tile;
+		TileId.SCRAMBLER: return scrambler_tile;
+		TileId.PORTAL: return portal_tile;
+		TileId.VFORSEJR: return null;
+		_: printerr("Invalid TileId: {id} in building tiles".format({id=tile_id}));
 
 func place_tile(tile: Tile, x: int, z: int):
 	tile.global_transform.origin = Vector3(x, 0, z);

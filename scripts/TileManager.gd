@@ -2,6 +2,7 @@ extends Spatial
 
 class BuildableTile:
 	var count: int = 0;
+	var meta = null;
 	var scene: PackedScene;
 
 export var tiles: Dictionary = {};
@@ -89,6 +90,8 @@ func build_tile(tile: Tile):
 				self.tiles_ui.tiles[idx].set_count(replaced_tile.count);
 			
 			var instance: Tile = building_tile.scene.instance();
+			if building_tile.meta:
+				instance.build(building_tile.meta);
 			instance.global_transform.origin = p;
 			instance.x = tile.x;
 			instance.y = tile.y;

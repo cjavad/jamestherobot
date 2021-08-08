@@ -13,6 +13,9 @@ class ReplacedTile:
 
 var replacing: ReplacedTile = null;
 
+func build(meta):
+	pass
+
 func _ready():
 	# add self to tile manager
 	TileManager.add_tile(self);
